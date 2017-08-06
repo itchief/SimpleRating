@@ -1,0 +1,67 @@
+.rating {
+    position: relative;
+    width: 109px;
+    height: 30px;
+}
+
+.rating__best {
+    background: url(/assets/components/simplerating/img/stars.gif) no-repeat;
+    width: 109px;
+    height: 30px;
+    position: absolute;
+}
+
+.rating_active .rating__star {
+    cursor: pointer;
+}
+
+.rating__best_hover {
+    background-position: 0 -62px !important;
+}
+
+.rating-voted {
+    background-position: 0 -31px !important;
+}
+
+.rating__star {
+    width: 22px;
+    height: 35px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rating__star_1 {
+    left: 0px;
+}
+
+.rating__star_2 {
+    left: 22px;
+}
+
+.rating__star_3 {
+    left: 44px;
+}
+
+.rating__star_4 {
+    left: 66px;
+}
+
+.rating__star_5 {
+    left: 88px;
+}
+
+.rating__star_opacity {
+    background: url(/assets/components/simplerating/img/rating_bg.png) repeat scroll 0 0 transparent;
+}
+
+.rating__star_hover {
+    background-image: none !important;
+}
+
+.rating__current {
+    background: url(/assets/components/simplerating/img/stars.gif) 0 -62px no-repeat;
+    height: 30px;
+    position: absolute;
+}
