@@ -25,7 +25,7 @@ if (is_object($simple_rating)) {
 }
 // проверка по IP
 $ip = $modx->request->getClientIp();
-if (($modx->getOption('simple_rating_ip')===1) && in_array($ip['ip'], $rating_ips)) {
+if (($modx->getOption('simplerating_ip')===1) && in_array($ip['ip'], $rating_ips)) {
     $rating_active_class = '';
 }
 // проверка по COOKIE

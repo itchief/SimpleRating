@@ -5,9 +5,9 @@
 $settings = array();
 
 $tmp = array(
-    'simple_rating_ip' => array(
+    'ip' => array(
         'xtype' => 'combo-boolean',
-        'value' => false,
+        'value' => true,
     ),
 
 );

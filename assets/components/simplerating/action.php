@@ -50,7 +50,7 @@ switch ($_POST['action']) {
         $modx->getRequest();
         $ip = $modx->request->getClientIp();
 
-        if (in_array($ip['ip'], $ratingIps) && ($modx->getOption('simple_rating_ip') === 1)) {
+        if (in_array($ip['ip'], $ratingIps) && ($modx->getOption('simplerating_ip') === 1)) {
             break;
         }
 
