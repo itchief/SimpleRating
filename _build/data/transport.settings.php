@@ -4,13 +4,12 @@
 
 $settings = array();
 
-$tmp = array(/*
-    'some_setting' => array(
+$tmp = array(
+    'simple_rating_ip' => array(
         'xtype' => 'combo-boolean',
-        'value' => true,
-        'area' => 'simplerating_main',
+        'value' => false,
     ),
-    */
+
 );
 
 foreach ($tmp as $k => $v) {
@@ -18,8 +17,9 @@ foreach ($tmp as $k => $v) {
     $setting = $modx->newObject('modSystemSetting');
     $setting->fromArray(array_merge(
         array(
-            'key' => 'simplerating_' . $k,
+            'key' => PKG_NAME_LOWER . '_' . $k,
             'namespace' => PKG_NAME_LOWER,
+            'area' => 'simplerating_main',
         ), $v
     ), '', true, true);
 

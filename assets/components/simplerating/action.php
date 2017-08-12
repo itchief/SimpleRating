@@ -19,27 +19,25 @@ $output = array();
 
 switch ($_POST['action']) {
 
-    case 'setSimpleRating':
+    case 'setRating':
 
-        if (empty($_POST['title'])) {
+        if (empty($_POST['title']) || empty($_POST['id'])) {
             break;
         }
-
-        $title = $_POST['title'];
-        $id = $_POST['id'];
-        $modx->addPackage('simplerating', $modx->getOption('core_path') . 'components/simplerating/model/');
-
-        //const BEST_RATING = 5;
 
         $ratingValue = 0.0;
         $ratingCount = 0;
         $ratingIps = array();
 
-        $query = $modx->newQuery('SimpleRating');
-        $query->where(array(
+        $title = (int)$_POST['title'];
+        $id = (int)$_POST['id'];
+
+        $modx->addPackage('simplerating', $modx->getOption('core_path') . 'components/simplerating/model/');
+
+        $simpleRating = $modx->getObject('SimpleRating', array(
             'resource' => $id,
         ));
-        $simpleRating = $modx->getObject('SimpleRating', $query);
+
         if (is_object($simpleRating)) {
             $ratingValue = $simpleRating->get('rating_value');
             $ratingCount = $simpleRating->get('rating_count');
@@ -49,12 +47,15 @@ switch ($_POST['action']) {
             $simpleRating->set('resource', $id);
         }
 
-        if (in_array($_SERVER['REMOTE_ADDR'], $ratingIps)) {
+        $modx->getRequest();
+        $ip = $modx->request->getClientIp();
+
+        if (in_array($ip['ip'], $ratingIps) && ($modx->getOption('simple_rating_ip') === 1)) {
             break;
         }
 
         $ratingNewValue = ($ratingValue * $ratingCount + $title) / ($ratingCount + 1);
-        $ratingIps[] = $_SERVER['REMOTE_ADDR'];
+        $ratingIps[] = $ip['ip'];
         $simpleRating->set('rating_value', $ratingNewValue);
         $simpleRating->set('rating_count', $ratingCount + 1);
         $simpleRating->set('rating_ips', $ratingIps);
@@ -64,10 +65,11 @@ switch ($_POST['action']) {
             'rating_value' => $ratingNewValue,
             'rating_count' => $ratingCount + 1
         );
+        setcookie('star_rating', $id, time() + (86400 * 365), '/' . $modx->makeUrl($id));
 
         break;
-
 }
+
 header('Content-Type: application/json');
 $output = json_encode($output);
 exit($output);

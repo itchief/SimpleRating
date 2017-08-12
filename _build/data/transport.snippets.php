@@ -5,8 +5,8 @@
 $snippets = array();
 
 $tmp = array(
-    'getSimpleRating' => array(
-        'file' => 'getsimplerating',
+    'SimpleRating' => array(
+        'file' => 'simplerating',
         'description' => '',
     ),
 );

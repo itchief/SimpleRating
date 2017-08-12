@@ -1,14 +1,15 @@
 .rating {
     position: relative;
-    width: 109px;
-    height: 30px;
+    width: 130px;
+    height: 36px;
 }
 
 .rating__best {
-    background: url(/assets/components/simplerating/img/stars.gif) no-repeat;
-    width: 109px;
-    height: 30px;
+    background: url(/assets/components/simplerating/img/stars.png) no-repeat;
+    width: 130px;
+    height: 36px;
     position: absolute;
+    background-size: 130px 210px;
 }
 
 .rating_active .rating__star {
@@ -16,16 +17,12 @@
 }
 
 .rating__best_hover {
-    background-position: 0 -62px !important;
-}
-
-.rating-voted {
-    background-position: 0 -31px !important;
+    background-position: 0 -36px !important;
 }
 
 .rating__star {
-    width: 22px;
-    height: 35px;
+    width: 26px;
+    height: 36px;
     display: block;
     position: absolute;
     top: 0;
@@ -33,23 +30,23 @@
 }
 
 .rating__star_1 {
-    left: 0px;
+    left: 0;
 }
 
 .rating__star_2 {
-    left: 22px;
+    left: 26px;
 }
 
 .rating__star_3 {
-    left: 44px;
+    left: 52px;
 }
 
 .rating__star_4 {
-    left: 66px;
+    left: 78px;
 }
 
 .rating__star_5 {
-    left: 88px;
+    left: 104px;
 }
 
 .rating__star_opacity {
@@ -61,7 +58,8 @@
 }
 
 .rating__current {
-    background: url(/assets/components/simplerating/img/stars.gif) 0 -62px no-repeat;
-    height: 30px;
+    background: url(/assets/components/simplerating/img/stars.png) 0 -36px no-repeat;
+    height: 36px;
     position: absolute;
+    background-size: 130px 210px;
 }

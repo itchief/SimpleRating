@@ -3,11 +3,11 @@
 $properties = array();
 
 $tmp = array(
-    /*'tpl' => array(
+    'tpl' => array(
         'type' => 'textfield',
-        'value' => 'tpl.SimpleRating.item',
+        'value' => 'tplSimpleRating',
     ),
-    'sortby' => array(
+    /*'sortby' => array(
         'type' => 'textfield',
         'value' => 'name',
     ),
