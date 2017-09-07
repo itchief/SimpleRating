@@ -50,28 +50,27 @@ switch ($_POST['action']) {
         $modx->getRequest();
         $ip = $modx->request->getClientIp();
 
-        if (in_array($ip['ip'], $ratingIps) && $modx->getOption('simplerating_ip')) {
-            break;
+        // проверка IP
+        if ($modx->getOption('simplerating_ip')) {
+            $modx->getRequest();
+            $ip = $modx->request->getClientIp();
+            if (in_array($ip['ip'], $ratingIps)) {
+                break;
+            }
         }
-
         $ratingNewValue = ($ratingValue * $ratingCount + $title) / ($ratingCount + 1);
-        $ratingIps[] = $ip['ip'];
         $simpleRating->set('rating_value', $ratingNewValue);
         $simpleRating->set('rating_count', $ratingCount + 1);
-        $simpleRating->set('rating_ips', $ratingIps);
+        if ($modx->getOption('simplerating_ip')) {
+            $ratingIps[] = $ip['ip'];
+            $simpleRating->set('rating_ips', $ratingIps);
+        }
         $simpleRating->save();
 
         $output = array(
             'rating_value' => $ratingNewValue,
             'rating_count' => $ratingCount + 1
         );
-
-        $path = '/';
-        if($modx->getOption('site_start') != $id) {
-            $path .= $modx->makeUrl($id);
-        }
-
-        setcookie('star_rating', $id, time() + (86400 * 365), $path);
 
         break;
 }
